@@ -3,7 +3,8 @@
         "*.html": "html",
         "implArray.C": "cpp",
         "implStack.C": "cpp",
-        "Stack_LL.C": "cpp"
+        "Stack_LL.C": "cpp",
+        "q_ll.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
