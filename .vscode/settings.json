@@ -2,6 +2,8 @@
     "files.associations": {
         "*.html": "html",
         "implArray.C": "cpp",
-        "implStack.C": "cpp"
-    }
+        "implStack.C": "cpp",
+        "Stack_LL.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
