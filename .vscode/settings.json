@@ -5,7 +5,9 @@
         "implStack.C": "cpp",
         "Stack_LL.C": "cpp",
         "q_ll.C": "cpp",
-        "stack_usingQ.C": "cpp"
+        "stack_usingQ.C": "cpp",
+        "craete_LL.C": "cpp",
+        "create_LL.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
