@@ -63,10 +63,10 @@ void enqueue(int x){
     if(rear==MAX-1){
         printf("Overflow !!");
     }
-    else if(front==-1 && rear==-1){
-        front=rear=0;
-        q[rear]=x;
-    }
+    // else if(front==-1 && rear==-1){
+    //     front=rear=0;
+    //     q[rear]=x;
+    // }
     else{
         rear++;
         q[rear]=x;
@@ -81,7 +81,7 @@ int dequeue(){
     }
     else{
         int val;
-        val=q[front];
+        // val=q[front];
         front++;
         if(front>rear){
             front=rear=-1;
