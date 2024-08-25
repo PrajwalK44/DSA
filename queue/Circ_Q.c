@@ -9,7 +9,7 @@ int q[MAX];
 
 void enqueue(int);
 int dequeue();
-int peek();
+
 void display();
 
 int main(){
@@ -18,9 +18,8 @@ int main(){
         printf("\n--MAIN MENU---");
         printf("\n1. Enqueue");
         printf("\n2. Dequeue");
-        printf("\n3. Peek");
-        printf("\n4. Display");
-        printf("\n5. EXIT");
+        printf("\n3. Display");
+        printf("\n4. EXIT");
         printf("\n Enter your choice-");
         scanf("%d",&option);
         switch(option){
@@ -38,18 +37,13 @@ int main(){
                 }
                 break;
             
-            case 3:
-                val=peek();
-                if(val!=-1){
-                    printf("The frontmost value in the queue is - %d",val);
-                }
-                break;
             
-            case 4:
+            
+            case 3:
                 display();
                 break;
 
-            case 5:
+            case 4:
                 printf("Thank You !!");
                 break;
             
@@ -57,70 +51,64 @@ int main(){
                 printf("Invalid Option!!");
                 break;
         }
-    }while(option!=5);
+    }while(option!=4);
 }
 
-
-void enqueue(int x){
-    if((rear + 1) % MAX == front){
-        printf("\nQueue is full\n");
-        return; 
+void enqueue(int val){
+    if((rear==MAX-1 && front==0)||rear+1==front){
+        printf("\nOverflow");
+        return;
     }
-
-    if(front == -1){  
-        front = rear = 0;
-    } else {
-        rear = (rear + 1) % MAX;
+    else if(front==-1 && rear==-1){
+        front=rear=0;
     }
-    q[rear] = x;
+    else if(rear==MAX-1 && front!=0){
+        rear=0;
+    }
+    else{
+        rear++;
+    }
+    q[rear]=val;
 }
 
 int dequeue(){
-    if(front == -1){
-        printf("\nUnderflow\n");
+    int val;
+    if(front==-1 && rear==-1){
+        printf("\nUnderflow");
         return -1;
     }
-    
-    int val = q[front];
-    if(front == rear){ 
-        front = rear = -1;
-    } else {
-        front = (front + 1) % MAX;
+    val=q[front];
+    if(front==rear){
+        front=rear=-1;
+    }
+    else if(front==MAX-1){
+        front=0;
+    }
+    else{
+        front++;
     }
     return val;
 }
 
-int peek(){
-    if(front == -1){
-        printf("Queue is Empty!!!\n");
-        return -1;
-    } else {
-        return q[front];
-    }
-}
-
-
 void display(){
     int i;
-    printf("\n");
-    if(front == -1){
-        printf("Queue is Empty!!!\n");
+    if(front==-1 && rear==-1){
+        printf("\nEmpty Queue");
     }
-    else {
-        printf("Queue elements are:");
-        if(front <= rear){
-            for(i = front; i <= rear; i++){
-                printf("\t%d", q[i]);
+    else{
+        if(front<=rear){
+            for(i=front;i<=rear;i++){
+                printf("\t%d",q[i]);
             }
         }
         else{
-            for(i = front; i < MAX; i++){
-                printf("\t%d", q[i]);
+            for(i=front; i<MAX; i++){
+                printf("\t%d",q[i]);
             }
-            for(i = 0; i <= rear; i++){
-                printf("\t%d", q[i]);
+            for(i=0; i<=rear; i++){
+                printf("\t%d",q[i]);
             }
         }
-        printf("\n");
     }
+    
 }
