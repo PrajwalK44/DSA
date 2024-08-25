@@ -11,7 +11,8 @@
         "Circ_LL_ins_beg.C": "cpp",
         "Circ_LL_ins_end.C": "cpp",
         "Circ_LL_ins_bef.C": "cpp",
-        "Circ_LL_ins_after.C": "cpp"
+        "Circ_LL_ins_after.C": "cpp",
+        "InfixToPostfix.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
