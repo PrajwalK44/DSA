@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX 10
+#define MAX 5
 
 int q[MAX];
 int front=-1;
@@ -59,29 +59,28 @@ int main(){
     }while(option!=5);
 }
 
-void enqueue(int x){
+void enqueue(int val){
     if(rear==MAX-1){
-        printf("Overflow !!");
+        printf("\nQueue Overflow!!");
+        return;
     }
-    // else if(front==-1 && rear==-1){
-    //     front=rear=0;
-    //     q[rear]=x;
-    // }
+    else if(front==-1 && rear==-1){
+        front=rear=0;
+    }
     else{
         rear++;
-        q[rear]=x;
     }
-
+    q[rear]=val;
 }
 
 int dequeue(){
+    int val;
     if(front==-1 || front>rear){
-        printf("Underflow");
+        printf("\nUnderflow");
         return -1;
     }
     else{
-        int val;
-        // val=q[front];
+        val=q[front];
         front++;
         if(front>rear){
             front=rear=-1;
@@ -91,8 +90,9 @@ int dequeue(){
 }
 
 int peek(){
+    int val;
     if(front==-1 || front>rear){
-        printf("Queue is empty");
+        printf("\nQueue is Empty");
         return -1;
     }
     else{
@@ -103,10 +103,11 @@ int peek(){
 void display(){
     int i;
     if(front==-1 || front>rear){
-        printf("Queue is Empty");
+        printf("\nQueue is empty");
+        return;
     }
     else{
-        for(i=front; i<=rear; i++){
+        for(i=front; i<=rear;i++){
             printf("\t%d",q[i]);
         }
     }
