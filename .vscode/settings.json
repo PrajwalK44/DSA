@@ -13,7 +13,8 @@
         "Circ_LL_ins_bef.C": "cpp",
         "Circ_LL_ins_after.C": "cpp",
         "InfixToPostfix.C": "cpp",
-        "PostfixEval.C": "cpp"
+        "PostfixEval.C": "cpp",
+        "Paranthesis_check.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
