@@ -8,21 +8,21 @@ struct node{
 
 struct node* start=NULL;
 
-struct node* create_LL();
-struct node* display_LL();
+struct node* create_LL(struct node*);
+struct node* display_LL(struct node*);
 
-struct node* insert_beg_LL();
-struct node* insert_end_LL();
-struct node* insert_bef_LL();
-struct node* insert_after_LL();
+struct node* insert_beg_LL(struct node*);
+struct node* insert_end_LL(struct node*);
+struct node* insert_bef_LL(struct node*);
+struct node* insert_after_LL(struct node*);
 
-struct node* delete_beg_LL();
-struct node* delete_end_LL();
-struct node* delete_node_LL();
-struct node* delete_after_LL();
+struct node* delete_beg_LL(struct node*);
+struct node* delete_end_LL(struct node*);
+struct node* delete_node_LL(struct node*);
+struct node* delete_after_LL(struct node*);
 
-struct node* search();
-struct node* count();
+struct node* search(struct node*);
+struct node* count(struct node*);
 
 int main(){
     int option;
@@ -40,14 +40,14 @@ int main(){
 
         switch(option){
             case 1:
-                start=create_LL();
+                start=create_LL(start);
                 printf("Linked List created");
                 break;
-        
+
             case 2:
-                start=display_LL();
+                start=display_LL(start);
                 break;
-            
+
             case 3:
                 {
                     int opt1;
@@ -62,17 +62,17 @@ int main(){
                         switch (opt1)
                         {
                         case 1:
-                            start=insert_beg_LL();
+                            start=insert_beg_LL(start);
                             break;
                         case 2:
-                            start=insert_end_LL();
+                            start=insert_end_LL(start);
                             break;
-                        
+
                         case 3:
-                            start=insert_bef_LL();
+                            start=insert_bef_LL(start);
                             break;
                         case 4:
-                            start=insert_after_LL();
+                            start=insert_after_LL(start);
                             break;
                         case 5:
                             printf("..........");
@@ -81,7 +81,7 @@ int main(){
                             break;
                         }
                     }while(opt1!=5);
-                    
+
                 }
                 break;
                 case 4:
@@ -98,17 +98,17 @@ int main(){
                         switch (opt2)
                         {
                         case 1:
-                            start=delete_beg_LL();
+                            start=delete_beg_LL(start);
                             break;
                         case 2:
-                            start=delete_end_LL();
+                            start=delete_end_LL(start);
                             break;
-                        
+
                         case 3:
-                            start=delete_node_LL();
+                            start=delete_node_LL(start);
                             break;
                         case 4:
-                            start=delete_after_LL();
+                            start=delete_after_LL(start);
                             break;
                         case 5:
                             printf("..........");
@@ -120,16 +120,16 @@ int main(){
                 }
                 break;
                 case 5:
-                    start=search();
+                    start=search(start);
                     break;
                 case 6:
-                    start=count();
+                    start=count(start);
                     break;
         }
     }while(option!=7);
 }
 
-struct node* create_LL(){
+struct node* create_LL(struct node* start){
     struct node* nn, *ptr;
     int val;
     printf("\nEnter -1 to end");
@@ -141,7 +141,7 @@ struct node* create_LL(){
         if(start==NULL){
             nn->next=NULL;
             start=nn;
-            
+
         }
     else{
             ptr=start;
@@ -152,12 +152,12 @@ struct node* create_LL(){
             nn->next=NULL;
         }
         printf("\nEnter Data ");
-        scanf("%d",&val);   
+        scanf("%d",&val);
     }
     return start;
 }
 
-struct node* display_LL(){
+struct node* display_LL(struct node* start){
     struct node* ptr;
     ptr=start;
     while(ptr!=NULL){
@@ -165,9 +165,9 @@ struct node* display_LL(){
         ptr=ptr->next;
     }
     return start;
-} 
+}
 
-struct node* insert_beg_LL(){
+struct node* insert_beg_LL(struct node* start){
     struct node* nn;
     int val;
     nn=(struct node*)malloc(sizeof(struct node));
@@ -185,7 +185,7 @@ struct node* insert_beg_LL(){
     return start;
 }
 
-struct node* insert_end_LL(){
+struct node* insert_end_LL(struct node* start){
     struct node* nn, *ptr;
     int val;
     nn = (struct node*)malloc(sizeof(struct node));
@@ -206,7 +206,7 @@ struct node* insert_end_LL(){
     return start;
 }
 
-struct node* insert_bef_LL(){
+struct node* insert_bef_LL(struct node* start){
     struct node* nn, *ptr, *temp;
     nn = (struct node*)malloc(sizeof(struct node));
     int val, data;
@@ -229,15 +229,12 @@ struct node* insert_bef_LL(){
         temp = ptr;
         ptr = ptr->next;
     }
-
-    // Value not found
     if (ptr == NULL) {
         printf("\nValue not found in the list.");
         free(nn);
         return start;
     }
 
-    // Insert the new node before `ptr`
     temp->next = nn;
     nn->next = ptr;
 
@@ -245,7 +242,7 @@ struct node* insert_bef_LL(){
 }
 
 
-struct node* insert_after_LL(){
+struct node* insert_after_LL(struct node* start){
     struct node* nn, *ptr, *temp;
     nn=(struct node*)malloc(sizeof(struct node));
     int val,data;
@@ -265,7 +262,7 @@ struct node* insert_after_LL(){
     return start;
 }
 
-struct node* delete_beg_LL(){
+struct node* delete_beg_LL(struct node* start){
     struct node* ptr;
     ptr=start;
 
@@ -279,7 +276,7 @@ struct node* delete_beg_LL(){
     return start;
 }
 
-struct node* delete_end_LL(){
+struct node* delete_end_LL(struct node* start){
     struct node* ptr, *temp;
     ptr=start;
     while(ptr->next!=NULL){
@@ -291,7 +288,7 @@ struct node* delete_end_LL(){
     return start;
 }
 
-struct node* delete_node_LL(){
+struct node* delete_node_LL(struct node* start){
     struct node* ptr, *temp;
     int val;
     printf("\nEnter the node which you want to delete");
@@ -311,10 +308,10 @@ struct node* delete_node_LL(){
         free(ptr);
         return start;
     }
-    
+
 }
 
-struct node* delete_after_LL(){
+struct node* delete_after_LL(struct node* start){
     struct node* ptr, *temp;
     int val;
     printf("\nEnter the node after which you want to delete");
@@ -329,7 +326,7 @@ struct node* delete_after_LL(){
     return start;
 }
 
-struct node* search(){
+struct node* search(struct node* start){
     struct node* ptr;
     int val;
     int c=0;
@@ -349,7 +346,7 @@ struct node* search(){
     return start;
 }
 
-struct node* count(){
+struct node* count(struct node* start){
     struct node* ptr;
     int c=0;
     ptr=start;

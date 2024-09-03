@@ -2,22 +2,28 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<string.h>
-#define MAX 10
+
 
 
 int top=-1;
-char st[MAX];
+
 
 void push(char);
 char pop();
 
 int main(){
     int i;
-    int flag=1;
-    char exp[MAX];
+    
+    char exp[100];
     char temp;
-    printf("\nEnter expression");
-    gets(exp);
+    int n=0;
+    scanf("%d",&n);
+    while(n--){
+        
+        int flag=1;
+        top=-1;
+        char *exp=(char*)malloc(10240*sizeof(char));
+      scanf("%s",exp);
     for(i=0; i<strlen(exp); i++){
         if(exp[i]=='(' || exp[i]=='{' || exp[i]=='['){
             push(exp[i]);
@@ -45,22 +51,22 @@ int main(){
         flag=0;
     }
     if(flag==1){
-        printf("\nValid");
+        printf("YES\n");
     }
     else{
-        printf("\nInvalid");
+        printf("NO\n");
+    }  
     }
+    
     return 0;
 }
 
 void push(char r){
-    if(top==MAX-1){
-        printf("\nOverflow");
-    }
-    else{
+    
+    
         top++;
         st[top]=r;
-    }
+    
 }
 
 char pop(){
