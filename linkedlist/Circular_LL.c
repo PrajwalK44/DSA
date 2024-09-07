@@ -244,11 +244,13 @@ struct node* insert_after_LL(){
 }
 
 struct node* delete_beg_LL(){
-    struct node* ptr;
-    ptr=start;
-
-    start=start->next;
-    free(ptr);
+    struct node *ptr;
+    ptr = start;
+    while(ptr -> next != start)
+         ptr = ptr -> next;
+    ptr -> next = start -> next;
+    free(start);
+    start = ptr -> next;
     return start;
 }
 
