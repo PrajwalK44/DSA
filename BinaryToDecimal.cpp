@@ -10,9 +10,9 @@ int main(){
     int i=0;
     while(n){
         int digit=n%10;
-        if(digit==1{
+        if(digit==1){
             ans=ans+pow(2,i);
-        })
+        }
         
         n=n/10;
         i++;
