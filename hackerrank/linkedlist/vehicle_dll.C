@@ -36,7 +36,7 @@ int main() {
     
     while (n--) {
         fgets(input, sizeof(input), stdin);
-        sscanf(input, "%s %d", command, &ID);
+        sscanf(input, "%s %d", command, &ID); 
         
         if (strcmp(command, "ADD") == 0) {
             addAtEnd(ID);
