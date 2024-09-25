@@ -15,7 +15,8 @@
         "InfixToPostfix.C": "cpp",
         "PostfixEval.C": "cpp",
         "Paranthesis_check.C": "cpp",
-        "BalancedBrackets.C": "cpp"
+        "BalancedBrackets.C": "cpp",
+        "vehicle_dll.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
