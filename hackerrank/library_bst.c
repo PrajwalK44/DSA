@@ -17,7 +17,7 @@ struct node* insert(struct node* p, int val) {
     nn->left = NULL;
     nn->right = NULL;
 
-    
+    //when no root is there
     if (p == NULL) {
         return nn;
     }
@@ -32,11 +32,7 @@ struct node* insert(struct node* p, int val) {
             ptr = ptr->left;  
         } else if (val > ptr->isbn) {
             ptr = ptr->right;  
-        } else {
-            
-            free(nn);  
-            return p;
-        }
+        } 
     }
 
     if (val < temp->isbn) {
