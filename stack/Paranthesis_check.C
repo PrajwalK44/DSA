@@ -19,43 +19,42 @@ int main(){
     int n=0;
     scanf("%d",&n);
     while(n--){
-        
         int flag=1;
         top=-1;
         char *exp=(char*)malloc(10240*sizeof(char));
-      scanf("%s",exp);
-    for(i=0; i<strlen(exp); i++){
-        if(exp[i]=='(' || exp[i]=='{' || exp[i]=='['){
-            push(exp[i]);
-        }
-        if(exp[i]==')' || exp[i]=='}' || exp[i]==']'){
-            if(top==-1){
-                flag=0;
+        scanf("%s",exp);
+        for(i=0; i<strlen(exp); i++){
+            if(exp[i]=='(' || exp[i]=='{' || exp[i]=='['){
+                push(exp[i]);
             }
-            else{
-                temp=pop();
+            if(exp[i]==')' || exp[i]=='}' || exp[i]==']'){
+                if(top==-1){
+                    flag=0;
+                }
+                else{
+                    temp=pop();
 
-                if((exp[i]==')') && (temp=='{'|| temp=='[')){
-                    flag=0;
-                }
-                if((exp[i]=='}') && (temp=='('|| temp=='[')){
-                    flag=0;
-                }
-                if((exp[i]==']') && (temp=='('|| temp=='{')){
-                    flag=0;
+                    if((exp[i]==')') && (temp=='{'|| temp=='[')){
+                        flag=0;
+                    }
+                    if((exp[i]=='}') && (temp=='('|| temp=='[')){
+                        flag=0;
+                    }
+                    if((exp[i]==']') && (temp=='('|| temp=='{')){
+                        flag=0;
+                    }
                 }
             }
         }
-    }
-    if(top>=0){
-        flag=0;
-    }
-    if(flag==1){
-        printf("YES\n");
-    }
-    else{
-        printf("NO\n");
-    }  
+        if(top>=0){
+            flag=0;
+        }
+        if(flag==1){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }  
     }
     
     return 0;
