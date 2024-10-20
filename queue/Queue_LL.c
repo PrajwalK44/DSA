@@ -67,7 +67,7 @@ void enqueue(int x){
     struct node *nn;
     nn=(struct node *)malloc(sizeof(struct node *));
     
-    else{
+    
         nn->data=x;
         nn->next=NULL;
         if(front == NULL)
@@ -79,7 +79,7 @@ void enqueue(int x){
             rear->next=nn;
             rear=nn;
         }
-    }
+    
 }
 
 int dequeue(){
