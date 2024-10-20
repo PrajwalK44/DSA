@@ -66,10 +66,7 @@ int main(){
 void enqueue(int x){
     struct node *nn;
     nn=(struct node *)malloc(sizeof(struct node *));
-    //if heap is full 
-    if(nn==NULL){
-        printf("\n Queue is Full");
-    }
+    
     else{
         nn->data=x;
         nn->next=NULL;
