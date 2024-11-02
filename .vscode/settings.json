@@ -1,22 +1,23 @@
 {
-    "files.associations": {
-        "*.html": "html",
-        "implArray.C": "cpp",
-        "implStack.C": "cpp",
-        "Stack_LL.C": "cpp",
-        "q_ll.C": "cpp",
-        "stack_usingQ.C": "cpp",
-        "craete_LL.C": "cpp",
-        "create_LL.C": "cpp",
-        "Circ_LL_ins_beg.C": "cpp",
-        "Circ_LL_ins_end.C": "cpp",
-        "Circ_LL_ins_bef.C": "cpp",
-        "Circ_LL_ins_after.C": "cpp",
-        "InfixToPostfix.C": "cpp",
-        "PostfixEval.C": "cpp",
-        "Paranthesis_check.C": "cpp",
-        "BalancedBrackets.C": "cpp",
-        "vehicle_dll.C": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
+  "files.associations": {
+    "*.html": "html",
+    "implArray.C": "cpp",
+    "implStack.C": "cpp",
+    "Stack_LL.C": "cpp",
+    "q_ll.C": "cpp",
+    "stack_usingQ.C": "cpp",
+    "craete_LL.C": "cpp",
+    "create_LL.C": "cpp",
+    "Circ_LL_ins_beg.C": "cpp",
+    "Circ_LL_ins_end.C": "cpp",
+    "Circ_LL_ins_bef.C": "cpp",
+    "Circ_LL_ins_after.C": "cpp",
+    "InfixToPostfix.C": "cpp",
+    "PostfixEval.C": "cpp",
+    "Paranthesis_check.C": "cpp",
+    "BalancedBrackets.C": "cpp",
+    "vehicle_dll.C": "cpp",
+    "PolyRepresentation.C": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
