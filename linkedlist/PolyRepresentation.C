@@ -132,7 +132,7 @@ struct node* add_poly(struct node *start1, struct node *start2, struct node *sta
         }
     }
     if(ptr1==NULL){
-        while(ptr1!=NULL){
+        while(ptr2!=NULL){
             start3=add_node(start3, ptr2->coeff, ptr2->expo);
             ptr2=ptr2->next;
         }
