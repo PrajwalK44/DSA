@@ -18,6 +18,7 @@ void BFS(int adj[][MAX], int visited[], int start){
         }
     }
 }
+
 int main(){
     int adj[MAX][MAX];
     int visited[MAX]={0};
