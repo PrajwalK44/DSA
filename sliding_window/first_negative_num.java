@@ -1,27 +1,38 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 class Solution {
-    public long maximumSubarraySum(int[] nums, int k) {
-        long max_sum=0;
-        long win_sum=0;
-        HashMap<Integer, Integer> freq=new HashMap<>();
 
-        for(int i=0; i<nums.length; i++){
-            win_sum+=nums[i];
-            freq.put(nums[i], freq.getOrDefault(nums[i],0)+1);
-
-            if(i>=k){
-                win_sum-=nums[i-k];
-                freq.put(nums[i-k], freq.getOrDefault(nums[i-k],0)-1);
-                if(freq.get(nums[i-k])==0){
-                    freq.remove(nums[i-k]);
+    // Function to find the first negative integer in every window of size k
+    static List<Integer> FirstNegativeInteger(int arr[], int k) {
+        List<Integer> ans=new ArrayList<>();
+        LinkedList<Integer> negQueue=new LinkedList<>();
+        
+        int start=0;
+        int end=0;
+        while(end<arr.length){
+            if(arr[end]<0){
+                negQueue.add(end);
+            }
+            
+            if(end-start+1==k){
+                if(!negQueue.isEmpty() && negQueue.peek()>=start){
+                    ans.add(arr[negQueue.peek()]);
                 }
+                 else{
+                    ans.add(0);
+                }
+                start++;
+                
+                
+                if(!negQueue.isEmpty() && negQueue.peek() < start){
+                    negQueue.poll();
+                }
+                
             }
-
-            if(i>=k-1 && freq.size()==k){
-                max_sum=Math.max(win_sum, max_sum);
-            }
+            end++;
         }
-        return max_sum;
+        return ans;
     }
 }
