@@ -1,75 +1,70 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
 import java.util.Scanner;
 
-class NQueens {
-    private int N;
-    private int[][] board;
 
-    public NQueens(int N) {
-        this.N = N;
-        this.board = new int[N][N];
+class Main {
+    int n, solutionCount;
+    int[][] board;
+    Main(int n){
+        this.n=n;
+        this.board = new int[n][n];
+        this.solutionCount=0;
     }
-    private boolean isSafe(int row, int col) {
-        for (int i = 0; i < row; i++) {
-            if (board[i][col] == 1) return false;
+    
+    public  boolean isSafe(int row, int col){
+        //previous rows in a column
+        for(int i=0; i<row; i++){
+            if(board[i][col]==1) return false;
         }
-
-        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
-            if (board[i][j] == 1) return false;
+        
+        //left diagonal matrix
+        for(int i=row, j=col; i>=0 && j>=0; i--, j--){
+            if(board[i][j]==1) return false;
         }
-
-        for (int i = row, j = col; i >= 0 && j < N; i--, j++) {
-            if (board[i][j] == 1) return false;
+        
+        //right diagonal matrix
+        for(int i=row, j=col; i>=0 && j<n; i--, j++){
+            if(board[i][j]==1) return false;
         }
-
         return true;
     }
-
-    // Backtracking function to solve N-Queens
-    private boolean solveNQueens(int row) {
-        if (row == N) return true; // All queens are placed
-
-        for (int col = 0; col < N; col++) {
-            if (isSafe(row, col)) {
-                board[row][col] = 1;
-                System.out.println("Trying to place Q at (" + row + ", " + col + ")");
-                printBoard();
-                if (solveNQueens(row + 1)) return true; // Recur to place next queen
-
-                // Backtrack
-                board[row][col] = 0;
-                System.out.println("Backtracking from (" + row + ", " + col + ")");
-                printBoard();
+    
+    public  void solveNQueens(int row){
+        if(row==n){
+           System.out.println("Solution:-"+(++solutionCount));
+           printBoard();
+           System.out.println();
+           return;
+        }
+        for(int col=0; col<n; col++){
+            if(isSafe(row, col)){
+                board[row][col]=1;
+                solveNQueens(row+1);
+                board[row][col]=0;
             }
         }
-        return false; // No valid placement found
     }
-
-      private void printBoard() {
-        for (int[] row : board) {
-            for (int cell : row) {
-                System.out.print((cell == 1 ? "Q " : ". "));
+    
+    public  void solve(){
+        solveNQueens(0);
+        System.out.println("Total solutions:- "+solutionCount);
+    }
+    public  void printBoard(){
+        for(int[] row: board){
+            for(int r: row){
+                System.out.print((r==1 ? "Q " : ". "));
             }
             System.out.println();
         }
         System.out.println();
     }
-
-    // Solve and display the solution
-    public void solve() {
-        if (solveNQueens(0)) {
-            System.out.println("Solution for " + N + "-Queens:");
-            printBoard();
-        } else {
-            System.out.println("No solution exists for " + N + "-Queens.");
-        }
-    }
+    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter value of N: ");
-        int N = scanner.nextInt();
-        scanner.close();
-
-        NQueens nQueens = new NQueens(N);
-        nQueens.solve();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of rows");
+        int n=sc.nextInt();
+        Main mn = new Main(n);
+        mn.solve();
     }
 }
