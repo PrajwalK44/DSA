@@ -1,50 +1,42 @@
 import java.util.Scanner;
 
-public class RabinKarp{
-    int PRIME_NO=101;
-
-    public double calculateHash(String str){
-        double hash=0;
-        for(int i=0; i<str.length(); i++){
-            hash+=str.charAt(i)*Math.pow(PRIME_NO, i);
-        }
-        return hash;
-    }
-    
-    public double updateHash(double prevHash, char oldChar, char newChar, int patternLength){
-        double newHash = (prevHash - oldChar)/PRIME_NO;
-        newHash+=newChar*Math.pow(PRIME_NO, patternLength-1);
-        return newHash;
-    }
-
-    public void search(String text, String pattern){
-        int patternLength = pattern.length();
-        double patternHash = calculateHash(pattern);
-        double textHash = calculateHash(text.substring(0, patternLength));
-
-        for (int i = 0; i < text.length()-patternLength; i++) {
-            if(textHash == patternHash){
-                if(text.substring(i, i+patternLength).equals(pattern)){
-                    System.out.println("Pattern found at index "+i);
-                }
-            }
-
-            if(i<text.length()-patternLength){
-                textHash = updateHash(textHash, text.charAt(i), text.charAt(i+patternLength), patternLength);
-            }
-        }
-    }
-
+public class RKPractice {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter two strings");
-        String str1, str2;
-        System.out.println("Enter text");
-        str1=sc.nextLine();
-        System.out.println("Enter pattern");
-        str2=sc.nextLine();
-        RabinKarp kp = new RabinKarp();
-        kp.search(str1, str2);
+        String text, pattern;
+        int textLength, patternLength;
+        int textHash=0; 
+        int patternHash=0;
+        System.out.println("Enter the text");
+        text=sc.nextLine();
+        
+        System.out.println("Enter the pattern");
+        pattern = sc.nextLine();
+        textLength = text.length();
+        patternLength = pattern.length();
+        
+        for(int i=0; i<patternLength; i++){
+            textHash+=text.charAt(i);
+            patternHash+=pattern.charAt(i);
+        }
+        
+        textHash %= 11;
+        patternHash %= 11;
+        //imp condition => textLength-patternLength
+        for(int i=0; i<=textLength-patternLength; i++){
+            if(textHash==patternHash){
+                if(text.substring(i, i+patternLength).equals(pattern)){
+                    System.out.println("Pattern found at "+(i+1));
+                }
+                else{
+                    System.out.println("Spurious hit");
+                }
+            } else{
+                textHash = (textHash-text.charAt(i)+text.charAt(i+patternLength))%11;
+                if(textHash<0){
+                    textHash+=11;
+                }
+            }
+        }
     }
-
 }
