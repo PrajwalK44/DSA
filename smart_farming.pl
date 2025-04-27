@@ -24,17 +24,6 @@ pest_presence(wheat, no).
 fertilizer_need(corn, high).
 fertilizer_need(wheat, low).
 
-
-
-
-
-
-
-
-
-
-
-
 % Rule for deciding if irrigation is needed
 needs_irrigation(Crop) :-
     crop_type(Crop),
