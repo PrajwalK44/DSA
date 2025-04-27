@@ -23,17 +23,6 @@ pedestrian_presence(yes).
 pedestrian_presence(no).
 
 
-
-
-
-
-
-
-
-
-
-
-
 % Rule for stopping the vehicle if an obstacle is detected nearby
 should_stop :-
     sensor_data(obstacle_nearby, yes),
