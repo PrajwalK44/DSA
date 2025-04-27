@@ -8,12 +8,12 @@ parent(jim, ben).      % Jim is a parent of Ben
 % A person is a mother if they are a parent and their child is female.
 mother(X, Y) :-
     parent(X, Y),
-    female(Y).
+    female(X).
 
 % A person is a father if they are a parent and their child is male.
 father(X, Y) :-
     parent(X, Y),
-    male(Y).
+    male(X).
 
 % A person is a grandparent if they are a parent of a parent.
 grandparent(X, Y) :-
