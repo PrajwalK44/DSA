@@ -25,5 +25,5 @@ for _ in range(n):
 start_node = input("Enter start node: ")
 goal_node = input("Enter goal node: ")
 
-print("\nBFS Traversal:")
+print("\nDFS Traversal:")
 dfs(graph, start_node, goal_node)
