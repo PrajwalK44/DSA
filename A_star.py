@@ -10,7 +10,7 @@ def a_star(graph, start, goal, heuristics):
         if node in visited:
             continue
         print(f"Visiting node {node} of heuristics: {heuristics[node]} of cost {g}")
-        
+        visited.add(node)
         if node == goal:
             print("\nGoal found")
             print(f"Path: {' -> '.join(path)}")
