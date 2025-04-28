@@ -1,52 +1,44 @@
-% --- Facts ---
+% Static facts
 road_condition(clear).
 road_condition(wet).
+road_condition(icy).
 
-sensor_data(obstacle_nearby, yes).
-sensor_data(obstacle_nearby, no).
+traffic_light(red).
+traffic_light(yellow).
+traffic_light(green).
 
-% Replace old speed facts with one numeric fact:
-current_speed(30).    % vehicle is traveling at 30 km/h
+obstacle(none).
+obstacle(pedestrian).
+obstacle(vehicle).
+obstacle(animal).
 
-vehicle_state(stopped).
-vehicle_state(moving).
+% Rules for speed decision
+recommended_speed(clear, green, none, 60).
+recommended_speed(clear, yellow, none, 40).
+recommended_speed(clear, red, none, 0).
 
-traffic_signal(green).
-traffic_signal(yellow).
-traffic_signal(red).
+recommended_speed(wet, green, none, 40).
+recommended_speed(wet, yellow, none, 30).
+recommended_speed(wet, red, none, 0).
 
-pedestrian_presence(yes).
-pedestrian_presence(no).
+recommended_speed(icy, _, _, 10).
 
+% Rules when obstacle is present
+adjust_speed_for_obstacle(pedestrian, 0).
+adjust_speed_for_obstacle(vehicle, 10).
+adjust_speed_for_obstacle(animal, 5).
+adjust_speed_for_obstacle(none, Speed, Speed).
 
-% --- Rules ---
+% Main decision rule
+decide_speed(RoadCondition, TrafficLight, Obstacle, FinalSpeed) :-
+    recommended_speed(RoadCondition, TrafficLight, none, BaseSpeed),
+    (Obstacle = none ->
+        FinalSpeed = BaseSpeed ;
+        adjust_speed_for_obstacle(Obstacle, AdjustedSpeed),
+        FinalSpeed is min(BaseSpeed, AdjustedSpeed)).
 
-% Stop if an obstacle is detected and you're moving
-should_stop :-
-    sensor_data(obstacle_nearby, yes),
-    vehicle_state(moving).
-
-% Slow down if the road is wet and speed exceeds 50 km/h
-should_slow_down :-
-    road_condition(wet),
-    current_speed(S),
-    S > 50.
-
-% React to traffic lights
-react_to_traffic_signal :-
-    traffic_signal(red),
-    vehicle_state(moving),
-    should_stop.
-react_to_traffic_signal :-
-    traffic_signal(yellow),
-    vehicle_state(moving),
-    should_slow_down.
-react_to_traffic_signal :-
-    traffic_signal(green),
-    vehicle_state(moving).
-
-% Avoid pedestrians by stopping if someone is detected in your path
-avoid_pedestrian :-
-    pedestrian_presence(yes),
-    sensor_data(obstacle_nearby, yes),
-    should_stop.
+% Entry point for user query
+% Example usage: ?- vehicle_decision(clear, green, none, Speed).
+vehicle_decision(Road, Light, Obstacle, Speed) :-
+    decide_speed(Road, Light, Obstacle, Speed),
+    format('Recommended speed: ~w km/h~n', [Speed]).
