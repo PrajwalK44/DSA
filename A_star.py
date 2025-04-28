@@ -20,7 +20,7 @@ def a_star(graph, start, goal, heuristics):
         for neighbour, cost in graph.get(node, []):
             if neighbour not in visited:
                 g_new = g+cost
-                f_new = g_new+ heuristics[node]
+                f_new = g_new+ heuristics[neighbour]
                 heapq.heappush(open_list, (f_new, g_new, neighbour, path+[neighbour]))
 
 
