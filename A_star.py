@@ -14,7 +14,7 @@ def a_star(graph, start, goal, heuristics):
         if node == goal:
             print("\nGoal found")
             print(f"Path: {' -> '.join(path)}")
-            print("Total cost ",cost)
+            print("Total cost ",f)
             return
         
         for neighbour, cost in graph.get(node, []):
