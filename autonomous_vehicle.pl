@@ -1,7 +1,6 @@
 % Facts about road conditions
 road_condition(clear).
 road_condition(wet).
-road_condition(icy).
 
 % Facts about sensor data
 sensor_data(obstacle_nearby, yes).
@@ -28,13 +27,9 @@ should_stop :-
     sensor_data(obstacle_nearby, yes),
     vehicle_state(moving).
 
-% Rule for slowing down the vehicle if the road is wet or icy
+% Rule for slowing down the vehicle if the road is wet
 should_slow_down :-
     road_condition(wet),
-    sensor_data(vehicle_speed(60), no).
-
-should_slow_down :-
-    road_condition(icy),
     sensor_data(vehicle_speed(60), no).
 
 % Rule for reacting to traffic lights
