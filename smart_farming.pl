@@ -7,6 +7,11 @@ soil_quality(clay, good).
 soil_quality(sand, moderate).
 soil_quality(loam, excellent).
 
+% Rules for planting decision based on soil quality
+% excellent → ideal
+% good      → suitable with minor amendments
+% moderate  → requires significant amendments
+
 recommended_soil(excellent, 'Ideal for planting').
 recommended_soil(good,     'Suitable but consider soil improvement').
 recommended_soil(moderate, 'Not recommended without soil amendments').
